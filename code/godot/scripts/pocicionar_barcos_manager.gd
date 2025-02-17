@@ -23,8 +23,12 @@ func _ready() -> void:
 
 func permiso_de_posicionar(posicion :int , horizontal :bool):
 	#X e Y inicial para el proceso del servidor
-	var Xi = posicion % 10
+	
 	var Yi = posicion / 10
+	var Xi = posicion % 10
+	if Xi == 0:
+		Xi = 10
+		Yi = Yi -1
 	#X e Y para godot
 	var X = (posicion-1) % 10
 	var Y = (posicion-1) / 10

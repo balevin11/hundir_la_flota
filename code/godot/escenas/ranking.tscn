@@ -1,0 +1,437 @@
+[gd_scene load_steps=20 format=3 uid="uid://bfrd8at6navym"]
+
+[ext_resource type="Script" path="res://scripts/ranking_nodo_padre.gd" id="1_o67p4"]
+[ext_resource type="Texture2D" uid="uid://bs1cj0onevbpt" path="res://imagenes/Fondo_ranking.jpg" id="2_xjqse"]
+[ext_resource type="FontFile" uid="uid://cvj7nleoxpifl" path="res://texto/VeraMono.ttf" id="3_jlnon"]
+[ext_resource type="Material" uid="uid://cty53t5eha4r5" path="res://material/copas_material.tres" id="4_64rvh"]
+[ext_resource type="Texture2D" path="res://imagenes/copa_1.tres" id="4_xxl5m"]
+[ext_resource type="Texture2D" path="res://imagenes/copa_2.tres" id="5_xpfxr"]
+[ext_resource type="Texture2D" path="res://imagenes/copa_3.tres" id="6_4w7lt"]
+[ext_resource type="Texture2D" uid="uid://cwe4fudv8x745" path="res://imagenes/Flecha_retorno.png" id="8_j06t2"]
+[ext_resource type="AudioStream" uid="uid://2xnyvrq4imx2" path="res://sonido/error-call-to-attention-129258.mp3" id="9_ich8g"]
+[ext_resource type="Texture2D" uid="uid://cvrjvtdju5qis" path="res://imagenes/loading_animation.png" id="10_08vwi"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b7pyp"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81gbl"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kin7d"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pdg0o"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6hja"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lqbxr"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ir7x7"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bmnog"]
+atlas = ExtResource("10_08vwi")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_63ymv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b7pyp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81gbl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kin7d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pdg0o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6hja")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lqbxr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ir7x7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bmnog")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 7.0
+}]
+
+[node name="ranking" type="Node2D"]
+position = Vector2(2, 2)
+script = ExtResource("1_o67p4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+scale = Vector2(0.718125, 0.711111)
+texture = ExtResource("2_xjqse")
+
+[node name="labels" type="Node2D" parent="."]
+
+[node name="titulos_nombre" type="RichTextLabel" parent="labels"]
+visible = false
+offset_left = -444.0
+offset_top = -177.0
+offset_right = 560.0
+offset_bottom = 235.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Nombre"
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="titulos_partidas" type="RichTextLabel" parent="labels"]
+visible = false
+offset_left = -100.0
+offset_top = -177.0
+offset_right = 100.0
+offset_bottom = -147.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Partidas"
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="titulos_victorias" type="RichTextLabel" parent="labels"]
+visible = false
+offset_left = 110.0
+offset_top = -177.0
+offset_right = 310.0
+offset_bottom = -147.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Victorias"
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="titulos_porcentaje" type="RichTextLabel" parent="labels"]
+visible = false
+offset_left = 337.0
+offset_top = -177.0
+offset_right = 537.0
+offset_bottom = -147.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+text = "Porcentaje "
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="campeon_nombre" type="RichTextLabel" parent="labels"]
+offset_left = -444.0
+offset_top = -117.0
+offset_right = -44.0
+offset_bottom = -87.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="campeon_partidas" type="RichTextLabel" parent="labels"]
+offset_left = -100.0
+offset_top = -117.0
+offset_right = 100.0
+offset_bottom = -87.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="campeon_victorias" type="RichTextLabel" parent="labels"]
+offset_left = 110.0
+offset_top = -117.0
+offset_right = 310.0
+offset_bottom = -87.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="campeon_porcentaje" type="RichTextLabel" parent="labels"]
+offset_left = 337.0
+offset_top = -117.0
+offset_right = 537.0
+offset_bottom = -87.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="segundo_nombre" type="RichTextLabel" parent="labels"]
+offset_left = -444.0
+offset_top = -57.0
+offset_right = -44.0
+offset_bottom = -27.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="segundo_partidas" type="RichTextLabel" parent="labels"]
+offset_left = -100.0
+offset_top = -57.0
+offset_right = 100.0
+offset_bottom = -27.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="segundo_victorias" type="RichTextLabel" parent="labels"]
+offset_left = 110.0
+offset_top = -57.0
+offset_right = 310.0
+offset_bottom = -27.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="segundo_porcentaje" type="RichTextLabel" parent="labels"]
+offset_left = 337.0
+offset_top = -57.0
+offset_right = 537.0
+offset_bottom = -27.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="tercero_nombre" type="RichTextLabel" parent="labels"]
+offset_left = -444.0
+offset_top = 3.0
+offset_right = -44.0
+offset_bottom = 33.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="tercero_partidas" type="RichTextLabel" parent="labels"]
+offset_left = -100.0
+offset_top = 3.0
+offset_right = 100.0
+offset_bottom = 33.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="tercero_victorias" type="RichTextLabel" parent="labels"]
+offset_left = 110.0
+offset_top = 3.0
+offset_right = 310.0
+offset_bottom = 33.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="tercero_porcentaje" type="RichTextLabel" parent="labels"]
+offset_left = 337.0
+offset_top = 3.0
+offset_right = 537.0
+offset_bottom = 33.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="cuarto_nombre" type="RichTextLabel" parent="labels"]
+offset_left = -444.0
+offset_top = 63.0
+offset_right = -44.0
+offset_bottom = 93.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="cuarto_partidas" type="RichTextLabel" parent="labels"]
+offset_left = -100.0
+offset_top = 63.0
+offset_right = 100.0
+offset_bottom = 93.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="cuarto_victorias" type="RichTextLabel" parent="labels"]
+offset_left = 110.0
+offset_top = 63.0
+offset_right = 310.0
+offset_bottom = 93.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="cuarto_porcentaje" type="RichTextLabel" parent="labels"]
+offset_left = 337.0
+offset_top = 63.0
+offset_right = 537.0
+offset_bottom = 93.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="quinto_nombre" type="RichTextLabel" parent="labels"]
+offset_left = -444.0
+offset_top = 123.0
+offset_right = -44.0
+offset_bottom = 153.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="quinto_partidas" type="RichTextLabel" parent="labels"]
+offset_left = -100.0
+offset_top = 123.0
+offset_right = 100.0
+offset_bottom = 153.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="quinto_victorias" type="RichTextLabel" parent="labels"]
+offset_left = 110.0
+offset_top = 123.0
+offset_right = 310.0
+offset_bottom = 153.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="quinto_porcentaje" type="RichTextLabel" parent="labels"]
+offset_left = 337.0
+offset_top = 123.0
+offset_right = 537.0
+offset_bottom = 153.0
+theme_override_fonts/normal_font = ExtResource("3_jlnon")
+theme_override_font_sizes/normal_font_size = 25
+bbcode_enabled = true
+tab_size = 24
+metadata/_edit_use_anchors_ = true
+
+[node name="title" type="Label" parent="labels"]
+offset_left = -227.0
+offset_top = -287.0
+offset_right = 231.0
+offset_bottom = -218.0
+theme_override_font_sizes/font_size = 50
+text = "Ranking"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="error" type="Label" parent="labels"]
+visible = false
+offset_left = -568.0
+offset_top = 162.0
+offset_right = 576.0
+offset_bottom = 236.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 35
+horizontal_alignment = 1
+
+[node name="empty" type="Label" parent="labels"]
+visible = false
+offset_left = -411.0
+offset_top = -159.0
+offset_right = 411.0
+offset_bottom = 155.0
+theme_override_font_sizes/font_size = 40
+text = "Aún no hay jugadores en el ranking."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="copas" type="Node2D" parent="."]
+
+[node name="copa_1" type="Sprite2D" parent="copas"]
+visible = false
+material = ExtResource("4_64rvh")
+position = Vector2(-492, -100)
+texture = ExtResource("4_xxl5m")
+
+[node name="copa_2" type="Sprite2D" parent="copas"]
+visible = false
+material = ExtResource("4_64rvh")
+position = Vector2(-501, -35)
+texture = ExtResource("5_xpfxr")
+
+[node name="copa_3" type="Sprite2D" parent="copas"]
+visible = false
+material = ExtResource("4_64rvh")
+position = Vector2(-486, 24)
+scale = Vector2(0.876471, 0.888889)
+texture = ExtResource("6_4w7lt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Button" type="Button" parent="."]
+offset_left = -529.0
+offset_top = 220.0
+offset_right = 3233.0
+offset_bottom = 3982.0
+scale = Vector2(0.021, 0.021)
+icon = ExtResource("8_j06t2")
+flat = true
+expand_icon = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_ich8g")
+
+[node name="cargando" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(3.65957, -26.2857)
+scale = Vector2(0.770944, 0.770089)
+sprite_frames = SubResource("SpriteFrames_63ymv")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame_progress = 0.817646
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

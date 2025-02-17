@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dcrfsoyqyrydg"]
+[gd_scene load_steps=9 format=3 uid="uid://dcrfsoyqyrydg"]
 
 [ext_resource type="Script" path="res://scripts/pantalla_de_juego.gd" id="1_ef1de"]
 [ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="1_ofand"]
 [ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="2_oe8ok"]
 [ext_resource type="FontFile" uid="uid://duq07fytdjhar" path="res://texto/militar_font.ttf" id="3_t1hip"]
 [ext_resource type="Texture2D" uid="uid://hn158p0fgmmt" path="res://imagenes/metalic_panel.png" id="4_5312j"]
-[ext_resource type="PackedScene" path="res://escenas/tablero_propio.tscn" id="4_po5fx"]
+[ext_resource type="PackedScene" uid="uid://dtcu5d2urwm8" path="res://escenas/tablero_propio.tscn" id="4_po5fx"]
 [ext_resource type="PackedScene" path="res://escenas/tablero_rival.tscn" id="5_siene"]
+[ext_resource type="PackedScene" uid="uid://c27pg5i2fea1g" path="res://escenas/portaaviones.tscn" id="8_y5qor"]
 
 [node name="pantalla_de_juego" type="Node2D"]
 script = ExtResource("1_ef1de")
@@ -16,6 +17,7 @@ offset_left = 520.0
 offset_top = 524.0
 offset_right = 640.0
 offset_bottom = 644.0
+focus_mode = 0
 flat = true
 script = ExtResource("1_ofand")
 
@@ -59,7 +61,10 @@ scale = Vector2(3.5731, 2.16374)
 texture = ExtResource("4_5312j")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 2.0
+wait_time = 0.461
 autostart = true
+
+[node name="portaaviones" parent="." instance=ExtResource("8_y5qor")]
+position = Vector2(172, 157)
 
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

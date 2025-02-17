@@ -1,0 +1,7 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cty53t5eha4r5"]
+
+[ext_resource type="Shader" uid="uid://2u6wxg5p11n" path="res://shaders/copas_shader.tres" id="1_j1igw"]
+
+[resource]
+shader = ExtResource("1_j1igw")
+shader_parameter/color = Color(1, 1, 1, 1)

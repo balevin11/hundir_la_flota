@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d4jx6hhxackqp"]
+[gd_scene load_steps=4 format=3 uid="uid://dtcu5d2urwm8"]
 
 [ext_resource type="Script" path="res://scripts/rocas_a_tablero.gd" id="1_7n8vi"]
 [ext_resource type="Texture2D" uid="uid://d1bmx8idwsfkm" path="res://imagenes/oceangrid_final.png" id="2_7vpwx"]
-[ext_resource type="PackedScene" uid="uid://dix8ds4vawr7b" path="res://escenas/casilla.tscn" id="3_mngjq"]
+[ext_resource type="PackedScene" uid="uid://ddcwsskinkgjs" path="res://escenas/casilla.tscn" id="3_mngjq"]
 
 [node name="tablero" type="Node2D"]
 script = ExtResource("1_7n8vi")

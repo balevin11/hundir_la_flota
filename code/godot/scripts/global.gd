@@ -4,7 +4,7 @@ extends Node
 var is_draging = false
 var partida_id = 4
 var raton_ocupado = ""
-var cookie = "bc68a3bc-0eba-4edb-954b-5322a6fa04ce"
+var cookie 
 var dificultad
 var tu_empiezas
 var x_barcos = [-1,-1,-1,-1,-1]

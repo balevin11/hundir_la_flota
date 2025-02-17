@@ -194,7 +194,7 @@ def turno(request, partida_id):
         # Obtener información relevante de la partida
         # Recuperar el último ataque del rival basado en el modelo 'Ataques'
         ultimo_ataque = (
-            Ataques.objects.filter(partida=partida, atacante=partida.usuario2, objetivo=partida.usuario1)
+            Ataques.objects.filter(partida=partida, objetivo=usuario)
             .order_by('-id')
             .first()
         )

@@ -2,7 +2,7 @@ extends Node2D
 
 var partida_id = Global.partida_id
 var session_id = Global.cookie
-var turno_actual = Global.tu_empiezas
+var turno_actual 
 var jugador_nombre = Global.mi_nombre
 var x_ataque
 var y_ataque
@@ -21,12 +21,15 @@ const PORTAAVIONES = preload("res://escenas/portaaviones.tscn")
 
 func _ready():
 	crear_tablero_rival()
+	if Global.tu_empiezas:
+		turno_actual= Global.mi_nombre
 	const PATRULLERO = preload("res://escenas/patrullero.tscn")
 	var child_patrullero = PATRULLERO.instantiate()
 	add_child(child_patrullero)
 	var casilla_patrullero = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[0]-1) + str(Global.x_barcos[0]-1)))
 	child_patrullero.global_position = casilla_patrullero.global_position
 	child_patrullero.set_script(null)
+	child_patrullero.apply_scale(Vector2(1.35, 1.35))
 	if Global.dir_barcos[0] == "vertical":
 		child_patrullero.rotation_degrees = 90
 		
@@ -36,6 +39,7 @@ func _ready():
 	var casilla_destructor = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[1]-1) + str(Global.x_barcos[1]-1)))
 	child_destructor.global_position = casilla_destructor.global_position
 	child_destructor.set_script(null)
+	child_destructor.apply_scale(Vector2(1.35, 1.35))
 	if Global.dir_barcos[1] == "vertical":
 		child_destructor.rotation_degrees = 90
 		
@@ -45,6 +49,7 @@ func _ready():
 	var casilla_submarino = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[2]-1) + str(Global.x_barcos[2]-1)))
 	child_submarino.global_position = casilla_submarino.global_position
 	child_submarino.set_script(null)
+	child_submarino.apply_scale(Vector2(1.35, 1.35))
 	if Global.dir_barcos[2] == "vertical":
 		child_submarino.rotation_degrees = 90
 		
@@ -54,6 +59,7 @@ func _ready():
 	var casilla_acorazado = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[3]-1) + str(Global.x_barcos[3]-1)))
 	child_acorazado.global_position = casilla_acorazado.global_position
 	child_acorazado.set_script(null)
+	child_acorazado.apply_scale(Vector2(1.35, 1.35))
 	if Global.dir_barcos[3] == "vertical":
 		child_acorazado.rotation_degrees = 90
 		
@@ -63,6 +69,7 @@ func _ready():
 	var casilla_portaaviones = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[4]-1) + str(Global.x_barcos[4]-1)))
 	child_portaaviones.global_position = casilla_portaaviones.global_position
 	child_portaaviones.set_script(null)
+	child_portaaviones.apply_scale(Vector2(1.35, 1.35))
 	if Global.dir_barcos[4] == "vertical":
 		child_portaaviones.rotation_degrees = 90
 	

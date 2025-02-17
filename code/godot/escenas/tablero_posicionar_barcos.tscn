@@ -1,118 +1,16 @@
 [gd_scene load_steps=4 format=3 uid="uid://ctkgtdnyfoonh"]
 
 [ext_resource type="Script" path="res://scripts/rocas_a_tablero.gd" id="1_diqjt"]
-[ext_resource type="Texture2D" uid="uid://d4gr0v21mrv8c" path="res://imagenes/tablero.jpg" id="1_owcj2"]
 [ext_resource type="PackedScene" uid="uid://ddcwsskinkgjs" path="res://escenas/casilla.tscn" id="2_fi8p5"]
+[ext_resource type="Texture2D" uid="uid://d1bmx8idwsfkm" path="res://imagenes/oceangrid_final.png" id="2_hpjgs"]
 
 [node name="tablero" type="Node2D"]
 script = ExtResource("1_diqjt")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(2, 2)
-texture = ExtResource("1_owcj2")
-
-[node name="label" type="Node2D" parent="."]
-
-[node name="Label" type="Label" parent="label"]
-offset_left = -183.0
-offset_top = -191.0
-offset_right = 117.0
-offset_bottom = -168.0
-text = "        1             3              5             7             9
-"
-
-[node name="Label2" type="Label" parent="label"]
-offset_left = -183.0
-offset_top = -191.0
-offset_right = 113.0
-offset_bottom = -168.0
-text = "                2             4             6         "
-
-[node name="Label3" type="Label" parent="label"]
-offset_left = -183.0
-offset_top = -191.0
-offset_right = 152.0
-offset_bottom = -168.0
-text = "                                                              8            10"
-
-[node name="Label4" type="Label" parent="label"]
-offset_left = -184.0
-offset_top = -157.0
-offset_right = 116.0
-offset_bottom = -134.0
-text = "A"
-
-[node name="Label5" type="Label" parent="label"]
-offset_left = -184.0
-offset_top = -125.0
-offset_right = 116.0
-offset_bottom = -102.0
-text = "B
-"
-
-[node name="Label6" type="Label" parent="label"]
-offset_left = -185.0
-offset_top = -93.0
-offset_right = 115.0
-offset_bottom = -70.0
-text = "C
-"
-
-[node name="Label7" type="Label" parent="label"]
-offset_left = -185.0
-offset_top = -61.0
-offset_right = 115.0
-offset_bottom = -38.0
-text = "D
-"
-
-[node name="Label8" type="Label" parent="label"]
-offset_left = -184.0
-offset_top = -29.0
-offset_right = 116.0
-offset_bottom = -6.0
-text = "E
-"
-
-[node name="Label9" type="Label" parent="label"]
-offset_left = -184.0
-offset_top = 3.0
-offset_right = 116.0
-offset_bottom = 26.0
-text = "F
-"
-
-[node name="Label10" type="Label" parent="label"]
-offset_left = -187.0
-offset_top = 35.0
-offset_right = 113.0
-offset_bottom = 58.0
-text = "G
-"
-
-[node name="Label11" type="Label" parent="label"]
-offset_left = -186.0
-offset_top = 67.0
-offset_right = 114.0
-offset_bottom = 90.0
-text = "H
-"
-
-[node name="Label12" type="Label" parent="label"]
-offset_left = -183.0
-offset_top = 99.0
-offset_right = 117.0
-offset_bottom = 122.0
-text = "I
-"
-
-[node name="Label13" type="Label" parent="label"]
-offset_left = -183.0
-offset_top = 131.0
-offset_right = 117.0
-offset_bottom = 154.0
-text = "J
-"
+position = Vector2(-16.5, -17)
+scale = Vector2(1.03216, 1.03509)
+texture = ExtResource("2_hpjgs")
 
 [node name="casillas" type="Node2D" parent="."]
 
