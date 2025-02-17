@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://p6y4h5jspouk"]
+
+[ext_resource type="Script" path="res://scripts/patrullero.gd" id="1_ybxb4"]
+[ext_resource type="Texture2D" uid="uid://b6vnfrjqakh1g" path="res://imagenes/patrullero.png" id="2_tk1nh"]
+[ext_resource type="AudioStream" uid="uid://ix4wv61iaft7" path="res://sonidos/water-splash-199583.mp3" id="3_3tjq1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kd05"]
+size = Vector2(25, 29.9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu7cw"]
+size = Vector2(54, 22)
+
+[node name="patrullero" type="Node2D"]
+position = Vector2(-1, 0)
+script = ExtResource("1_ybxb4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(17, 1.19209e-07)
+rotation = 1.5708
+scale = Vector2(1.66915, 0.976735)
+texture = ExtResource("2_tk1nh")
+
+[node name="area_de_posicion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_de_posicion"]
+visible = false
+position = Vector2(1.90735e-06, 0.32143)
+rotation = -3.14159
+scale = Vector2(0.777778, 0.714286)
+shape = SubResource("RectangleShape2D_0kd05")
+
+[node name="area_clicable" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_clicable"]
+visible = false
+position = Vector2(17, 0)
+shape = SubResource("RectangleShape2D_nu7cw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3tjq1")
+pitch_scale = 1.76
+bus = &"SFX"
+
+[connection signal="body_entered" from="area_de_posicion" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="area_de_posicion" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="area_clicable" to="." method="_on_area_clicable_mouse_entered"]
+[connection signal="mouse_exited" from="area_clicable" to="." method="_on_area_clicable_mouse_exited"]

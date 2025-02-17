@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcxop6koo8sn4"]
+
+[ext_resource type="Script" path="res://scripts/flecha_retorno_tematica.gd" id="1_e875b"]
+[ext_resource type="Texture2D" uid="uid://df2sdv0p7wbjg" path="res://imagenes/fondo_tematica.png" id="1_t8isb"]
+[ext_resource type="Texture2D" uid="uid://b8uckmmd64v35" path="res://imagenes/Flecha_retorno.png" id="3_m08a5"]
+
+[node name="tematica" type="Node2D"]
+
+[node name="Flecha retorno tematica" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_e875b")
+
+[node name="Button" type="Button" parent="Flecha retorno tematica"]
+layout_mode = 0
+offset_left = -929.0
+offset_top = 366.0
+offset_right = -734.0
+offset_bottom = 510.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+metadata/_edit_lock_ = true
+
+[node name="Fondo" type="Sprite2D" parent="."]
+texture = ExtResource("1_t8isb")
+metadata/_edit_lock_ = true
+
+[node name="Flecha" type="Sprite2D" parent="."]
+position = Vector2(-835, 434)
+scale = Vector2(0.0622558, 0.0598145)
+texture = ExtResource("3_m08a5")
+
+[connection signal="pressed" from="Flecha retorno tematica/Button" to="Flecha retorno tematica" method="_on_button_pressed"]

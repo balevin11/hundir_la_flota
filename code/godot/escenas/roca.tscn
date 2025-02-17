@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://b816geec4twfs"]
+
+[ext_resource type="Texture2D" uid="uid://dlotq5abmhcdb" path="res://imagenes/roca.png" id="1_8tr6f"]
+
+[node name="roca" type="Sprite2D"]
+scale = Vector2(0.491717, 0.541526)
+texture = ExtResource("1_8tr6f")

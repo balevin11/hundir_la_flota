@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://b2w0j1p802d6j"]
+
+[ext_resource type="Script" path="res://scripts/destructor.gd" id="1_rdmjn"]
+[ext_resource type="Texture2D" uid="uid://dtfmsohvmpy80" path="res://imagenes/destructor.png" id="2_jh6kl"]
+[ext_resource type="AudioStream" uid="uid://ix4wv61iaft7" path="res://sonidos/water-splash-199583.mp3" id="3_tejto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0kd05"]
+size = Vector2(25, 28.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu7cw"]
+size = Vector2(85.5903, 22)
+
+[node name="destructor" type="Node2D"]
+script = ExtResource("1_rdmjn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(33.9648, 1.15736)
+rotation = 1.5708
+scale = Vector2(-1.11572, 0.859296)
+texture = ExtResource("2_jh6kl")
+
+[node name="area_de_posicion" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_de_posicion"]
+visible = false
+position = Vector2(0.409742, -0.281083)
+rotation = 3.14159
+scale = Vector2(0.777778, 0.714286)
+shape = SubResource("RectangleShape2D_0kd05")
+
+[node name="area_clicable" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="area_clicable"]
+visible = false
+position = Vector2(34.2049, -0.102509)
+shape = SubResource("RectangleShape2D_nu7cw")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_tejto")
+pitch_scale = 1.76
+bus = &"SFX"
+
+[connection signal="body_entered" from="area_de_posicion" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="area_de_posicion" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="area_clicable" to="." method="_on_area_clicable_mouse_entered"]
+[connection signal="mouse_exited" from="area_clicable" to="." method="_on_area_clicable_mouse_exited"]

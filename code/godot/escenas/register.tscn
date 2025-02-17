@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://t0smp2abpqq7"]
+
+[ext_resource type="Script" path="res://scripts/boton_atras_registro.gd" id="1_61rle"]
+[ext_resource type="Script" path="res://scripts/register.gd" id="1_f5kly"]
+[ext_resource type="Texture2D" uid="uid://bibgc1fdx4s0m" path="res://imagenes/register_escene.png" id="1_n5ym4"]
+[ext_resource type="Script" path="res://scripts/boton_registrarse.gd" id="2_ffck0"]
+[ext_resource type="Texture2D" uid="uid://dpnu1tsgg3sll" path="res://imagenes/rellenar_campos.png" id="4_juund"]
+[ext_resource type="Script" path="res://scripts/completar_campos.gd" id="5_afhri"]
+[ext_resource type="Texture2D" uid="uid://dew3yhfpe4mjs" path="res://imagenes/creado.png" id="6_bjiwx"]
+[ext_resource type="Script" path="res://scripts/creado.gd" id="7_n6l3n"]
+[ext_resource type="Texture2D" uid="uid://c1o7m1vssqaq3" path="res://imagenes/existente.png" id="8_cgo43"]
+[ext_resource type="Script" path="res://scripts/usuario_existente.gd" id="9_6akgh"]
+
+[node name="register" type="Node2D"]
+script = ExtResource("1_f5kly")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.6, 0.6)
+metadata/_edit_lock_ = true
+
+[node name="Boton_atras_registro" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_61rle")
+
+[node name="Button" type="Button" parent="Boton_atras_registro"]
+layout_mode = 0
+offset_left = -937.0
+offset_top = 386.0
+offset_right = -765.0
+offset_bottom = 514.0
+
+[node name="Boton_registrarse" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_ffck0")
+
+[node name="Button" type="Button" parent="Boton_registrarse"]
+layout_mode = 0
+offset_left = -251.0
+offset_top = 366.0
+offset_right = 249.0
+offset_bottom = 497.0
+
+[node name="fondo" type="Sprite2D" parent="."]
+texture = ExtResource("1_n5ym4")
+metadata/_edit_lock_ = true
+
+[node name="Nombre" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="Nombre"]
+layout_mode = 0
+offset_left = -618.0
+offset_top = -146.0
+offset_right = 618.0
+offset_bottom = -45.0
+theme_override_font_sizes/font_size = 45
+
+[node name="Contrasena" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LineEdit" type="LineEdit" parent="Contrasena"]
+layout_mode = 0
+offset_left = -618.0
+offset_top = 146.0
+offset_right = 618.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 45
+secret = true
+
+[node name="completar campos" type="Sprite2D" parent="."]
+position = Vector2(4.00002, 308)
+scale = Vector2(0.913542, 0.8875)
+texture = ExtResource("4_juund")
+script = ExtResource("5_afhri")
+metadata/_edit_lock_ = true
+
+[node name="creado" type="Sprite2D" parent="."]
+position = Vector2(0, 307)
+texture = ExtResource("6_bjiwx")
+script = ExtResource("7_n6l3n")
+metadata/_edit_lock_ = true
+
+[node name="usuario existente" type="Sprite2D" parent="."]
+position = Vector2(0, 307)
+texture = ExtResource("8_cgo43")
+script = ExtResource("9_6akgh")
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Boton_atras_registro/Button" to="Boton_atras_registro" method="_on_button_pressed"]
+[connection signal="pressed" from="Boton_registrarse/Button" to="Boton_registrarse" method="_on_button_pressed"]

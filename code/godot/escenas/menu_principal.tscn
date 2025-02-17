@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://cwcdqcgopyftw"]
+
+[ext_resource type="Script" path="res://scripts/boton_jugar.gd" id="1_6uowk"]
+[ext_resource type="Texture2D" uid="uid://hr8jc8ybh684" path="res://imagenes/pantalla menu principal.png" id="1_hci47"]
+[ext_resource type="Script" path="res://scripts/menu_principal.gd" id="1_hofv6"]
+[ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="2_crhn1"]
+[ext_resource type="Script" path="res://scripts/boton_ranking.gd" id="2_qee0c"]
+[ext_resource type="Script" path="res://scripts/boton_tematica.gd" id="4_0ochu"]
+[ext_resource type="Script" path="res://scripts/boton_salir.gd" id="5_yci5a"]
+
+[node name="menu_principal" type="Node2D"]
+script = ExtResource("1_hofv6")
+
+[node name="boton_jugar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6uowk")
+
+[node name="Button" type="Button" parent="boton_jugar"]
+layout_mode = 0
+offset_left = -451.0
+offset_top = -155.0
+offset_right = 449.0
+offset_bottom = 25.0
+
+[node name="boton_ranking" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_qee0c")
+
+[node name="Button" type="Button" parent="boton_ranking"]
+layout_mode = 0
+offset_left = -794.0
+offset_top = 67.0
+offset_right = -109.0
+offset_bottom = 247.0
+
+[node name="boton_tematica" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_0ochu")
+
+[node name="Button" type="Button" parent="boton_tematica"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 69.0
+offset_right = 793.0
+offset_bottom = 247.0
+
+[node name="boton_salir" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_yci5a")
+
+[node name="Button" type="Button" parent="boton_salir"]
+layout_mode = 0
+offset_left = 109.0
+offset_top = 296.0
+offset_right = 789.0
+offset_bottom = 474.0
+
+[node name="boton_ajustes" type="Button" parent="."]
+offset_left = -793.0
+offset_top = 292.0
+offset_right = -117.0
+offset_bottom = 476.0
+script = ExtResource("2_crhn1")
+
+[node name="fondo" type="Sprite2D" parent="."]
+rotation = 0.00237036
+texture = ExtResource("1_hci47")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00237036
+zoom = Vector2(0.6, 0.6)
+
+[connection signal="pressed" from="boton_jugar/Button" to="boton_jugar" method="_on_button_pressed"]
+[connection signal="pressed" from="boton_ranking/Button" to="boton_ranking" method="_on_button_pressed"]
+[connection signal="pressed" from="boton_tematica/Button" to="boton_tematica" method="_on_button_pressed"]
+[connection signal="pressed" from="boton_salir/Button" to="boton_salir" method="_on_button_pressed"]
+[connection signal="pressed" from="boton_ajustes" to="boton_ajustes" method="_on_button_pressed"]

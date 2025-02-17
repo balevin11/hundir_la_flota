@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddcwsskinkgjs"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utrvt"]
+size = Vector2(18, 17)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ogmi2"]
+size = Vector2(2, 2)
+
+[node name="casilla" type="StaticBody2D" groups=["droppables"]]
+position = Vector2(204, 385)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(0, 0.5)
+scale = Vector2(0.5, 0.5)
+shape = SubResource("RectangleShape2D_utrvt")
+
+[node name="deshabilitado" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_ogmi2")

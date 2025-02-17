@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ds8jtfny2cpne"]
+
+[ext_resource type="Script" path="res://scripts/musica_menu.gd" id="1_bquwu"]
+[ext_resource type="AudioStream" uid="uid://bi603h235oq8y" path="res://musica/The Tread of War - MP3.mp3" id="2_8xmxi"]
+
+[node name="musica_menu" type="Node2D"]
+script = ExtResource("1_bquwu")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_8xmxi")
+bus = &"Musica"

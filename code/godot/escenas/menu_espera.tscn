@@ -1,0 +1,59 @@
+[gd_scene load_steps=7 format=3 uid="uid://7ltkrxcc1pkj"]
+
+[ext_resource type="Texture2D" uid="uid://gkqgcn4smclo" path="res://imagenes/imagen_menu_generica.jpg" id="1_fbvn7"]
+[ext_resource type="Script" path="res://scripts/menu_espera.gd" id="1_qxc6v"]
+[ext_resource type="PackedScene" uid="uid://cwh38fvby2g21" path="res://escenas/animacion_de_carga.tscn" id="2_y76iq"]
+[ext_resource type="Texture2D" uid="uid://b8uckmmd64v35" path="res://imagenes/Flecha_retorno.png" id="3_b2em1"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1mmhh"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_btyc7"]
+font_size = 30
+
+[node name="menu_espera" type="Node2D"]
+script = ExtResource("1_qxc6v")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Imagen" type="TextureRect" parent="CanvasLayer"]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_fbvn7")
+expand_mode = 1
+metadata/_edit_group_ = true
+
+[node name="ImagenSombreada" type="TextureRect" parent="CanvasLayer/Imagen"]
+self_modulate = Color(0, 0, 0, 0.498039)
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("CanvasTexture_1mmhh")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_left = 0.501
+anchor_top = 0.465
+anchor_right = 0.501
+anchor_bottom = 0.465
+offset_left = -68.152
+offset_top = -11.32
+offset_right = 67.848
+offset_bottom = 11.68
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+text = "Buscando partida"
+label_settings = SubResource("LabelSettings_btyc7")
+
+[node name="AnimacionDeCarga" parent="CanvasLayer" instance=ExtResource("2_y76iq")]
+position = Vector2(578, 373)
+
+[node name="BotonVolver" type="Button" parent="CanvasLayer"]
+offset_left = 15.0
+offset_top = 543.0
+offset_right = 106.0
+offset_bottom = 633.0
+icon = ExtResource("3_b2em1")
+expand_icon = true
+
+[connection signal="pressed" from="CanvasLayer/BotonVolver" to="." method="_on_boton_volver_pressed"]

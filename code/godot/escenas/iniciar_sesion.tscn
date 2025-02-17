@@ -1,0 +1,76 @@
+[gd_scene load_steps=5 format=3 uid="uid://ftq345h0qgd3"]
+
+[ext_resource type="Texture2D" uid="uid://w5tm5un2p8w2" path="res://imagenes/pantalla_inicio_sesion.png" id="1_5or3w"]
+[ext_resource type="Script" path="res://scripts/iniciar_sesion.gd" id="1_sgo5q"]
+[ext_resource type="Script" path="res://scripts/control_inicio_sesion.gd" id="2_0f6sq"]
+[ext_resource type="Script" path="res://scripts/boton_atras_iniciar_sesion.gd" id="2_hfaje"]
+
+[node name="iniciar_sesion" type="Node2D"]
+script = ExtResource("1_sgo5q")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+top_level = true
+texture = ExtResource("1_5or3w")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.601, 0.601)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0f6sq")
+
+[node name="boton_atras_iniciar_sesion" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -943.0
+offset_top = 375.0
+offset_right = -758.0
+offset_bottom = 518.0
+flat = true
+script = ExtResource("2_hfaje")
+
+[node name="boton_continuar_iniciando_sesion" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = -246.0
+offset_top = 369.0
+offset_right = 245.0
+offset_bottom = 499.0
+flat = true
+
+[node name="campo_nombre" type="LineEdit" parent="Control"]
+top_level = true
+layout_mode = 0
+offset_left = -618.0
+offset_top = -146.0
+offset_right = 617.0
+offset_bottom = -44.0
+theme_override_font_sizes/font_size = 45
+
+[node name="campo_contrasena" type="LineEdit" parent="Control"]
+top_level = true
+layout_mode = 0
+offset_left = -619.0
+offset_top = 142.0
+offset_right = 620.0
+offset_bottom = 246.0
+theme_override_font_sizes/font_size = 45
+secret = true
+
+[node name="status_label" type="Label" parent="Control"]
+top_level = true
+layout_mode = 0
+offset_left = -528.0
+offset_top = 300.0
+offset_right = 526.0
+offset_bottom = 397.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 1
+uppercase = true
+
+[node name="HTTPRequest" type="HTTPRequest" parent="Control"]
+
+[connection signal="pressed" from="Control/boton_atras_iniciar_sesion" to="Control/boton_atras_iniciar_sesion" method="_on_pressed"]
+[connection signal="pressed" from="Control/boton_continuar_iniciando_sesion" to="Control" method="_on_boton_continuar_iniciando_sesion_pressed"]

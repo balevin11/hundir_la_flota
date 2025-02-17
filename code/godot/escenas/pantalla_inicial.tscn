@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cqg4ffa61cwk7"]
+
+[ext_resource type="Script" path="res://scripts/pantalla_inicial.gd" id="1_cegdw"]
+[ext_resource type="Script" path="res://scripts/boton_empezar.gd" id="1_ls080"]
+[ext_resource type="Texture2D" uid="uid://cknx651p03krg" path="res://imagenes/pantalla inicio.PNG" id="2_cuvo8"]
+
+[node name="Pantalla inicial" type="Node2D"]
+script = ExtResource("1_cegdw")
+
+[node name="Boton_empezar" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ls080")
+
+[node name="Button" type="Button" parent="Boton_empezar"]
+layout_mode = 0
+offset_left = -208.0
+offset_top = 411.0
+offset_right = 222.0
+offset_bottom = 504.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+rotation = 0.00237036
+zoom = Vector2(0.6, 0.6)
+
+[node name="fondo" type="Sprite2D" parent="."]
+texture = ExtResource("2_cuvo8")
+
+[connection signal="pressed" from="Boton_empezar/Button" to="Boton_empezar" method="_on_button_pressed"]

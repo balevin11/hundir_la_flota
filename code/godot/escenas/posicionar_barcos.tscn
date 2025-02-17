@@ -1,0 +1,179 @@
+[gd_scene load_steps=16 format=3 uid="uid://clj5btq3kw7t6"]
+
+[ext_resource type="Texture2D" uid="uid://gkqgcn4smclo" path="res://imagenes/imagen_menu_generica.jpg" id="2_kr7wx"]
+[ext_resource type="Script" path="res://scripts/pocicionar_barcos_manager.gd" id="2_p07tl"]
+[ext_resource type="PackedScene" uid="uid://ctkgtdnyfoonh" path="res://escenas/tablero_posicionar_barcos.tscn" id="2_uw4jt"]
+[ext_resource type="PackedScene" uid="uid://p6y4h5jspouk" path="res://escenas/patrullero.tscn" id="3_7r48k"]
+[ext_resource type="Texture2D" uid="uid://clw1aev0om3am" path="res://imagenes/fondo_boton_iniciar.png" id="4_hj7wp"]
+[ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="4_pbysq"]
+[ext_resource type="PackedScene" uid="uid://qfh5gmtju5ao" path="res://escenas/submarino.tscn" id="4_u4i6w"]
+[ext_resource type="PackedScene" path="res://escenas/acorazado.tscn" id="5_2c8tf"]
+[ext_resource type="Texture2D" uid="uid://di14ptvunm0fn" path="res://imagenes/raton_blanco-removebg-preview.png" id="5_mp6jn"]
+[ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="5_vmpgt"]
+[ext_resource type="PackedScene" uid="uid://b2w0j1p802d6j" path="res://escenas/destructor.tscn" id="6_kdcx4"]
+[ext_resource type="Texture2D" uid="uid://b8uckmmd64v35" path="res://imagenes/Flecha_retorno.png" id="6_qvafk"]
+[ext_resource type="PackedScene" uid="uid://c27pg5i2fea1g" path="res://escenas/portaaviones.tscn" id="7_58vpj"]
+[ext_resource type="AudioStream" uid="uid://dugof6iu2mdhv" path="res://sonidos/error-call-to-attention-129258.mp3" id="14_h1who"]
+[ext_resource type="AudioStream" uid="uid://bxj0xd7tyvtls" path="res://sonidos/purchase-succesful-ingame-230550.mp3" id="15_joove"]
+
+[node name="posicionar_barcos" type="Node2D"]
+
+[node name="Pocicionar_barcos_manager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_p07tl")
+
+[node name="ImagenMenuGenerica" type="Sprite2D" parent="."]
+light_mask = 0
+position = Vector2(-0.500008, -0.999989)
+scale = Vector2(0.716875, 0.72)
+texture = ExtResource("2_kr7wx")
+
+[node name="tablero_posicionar_barcos" parent="." instance=ExtResource("2_uw4jt")]
+unique_name_in_owner = true
+position = Vector2(1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="FondoBotonIniciar" type="Sprite2D" parent="."]
+position = Vector2(-415, 238)
+scale = Vector2(0.204712, 0.247126)
+texture = ExtResource("4_hj7wp")
+
+[node name="raton_image" type="Sprite2D" parent="."]
+position = Vector2(-405, 56)
+scale = Vector2(0.546774, 0.542308)
+texture = ExtResource("5_mp6jn")
+
+[node name="botones" type="Node2D" parent="."]
+
+[node name="ajustes" type="Button" parent="botones"]
+offset_left = -374.0
+offset_top = 107.0
+offset_right = -294.0
+offset_bottom = 177.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("4_pbysq")
+flat = true
+expand_icon = true
+script = ExtResource("5_vmpgt")
+
+[node name="confirmar" type="Button" parent="botones"]
+offset_left = -503.0
+offset_top = 206.0
+offset_right = -327.0
+offset_bottom = 271.0
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_disabled_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+text = "Iniciar"
+flat = true
+
+[node name="deshacer" type="Button" parent="botones"]
+offset_left = -529.0
+offset_top = 100.0
+offset_right = -438.0
+offset_bottom = 190.0
+theme_type_variation = &"FlatButton"
+icon = ExtResource("6_qvafk")
+flat = true
+expand_icon = true
+
+[node name="barcos" type="Node2D" parent="."]
+
+[node name="portaaviones" parent="barcos" instance=ExtResource("7_58vpj")]
+position = Vector2(338, -43)
+
+[node name="destructor" parent="barcos" instance=ExtResource("6_kdcx4")]
+position = Vector2(345, 92)
+
+[node name="acorazado" parent="barcos" instance=ExtResource("5_2c8tf")]
+position = Vector2(337, -127)
+
+[node name="submarino" parent="barcos" instance=ExtResource("4_u4i6w")]
+position = Vector2(344, 26)
+
+[node name="patrullero" parent="barcos" instance=ExtResource("3_7r48k")]
+position = Vector2(345, 159)
+
+[node name="label" type="Node2D" parent="."]
+
+[node name="Acorazado" type="Label" parent="label"]
+offset_left = 335.0
+offset_top = -168.0
+offset_right = 417.0
+offset_bottom = -145.0
+text = "Acorazado"
+
+[node name="Portaaviones" type="Label" parent="label"]
+offset_left = 333.0
+offset_top = -92.0
+offset_right = 435.0
+offset_bottom = -69.0
+text = "Portaaviones"
+
+[node name="Submarino" type="Label" parent="label"]
+offset_left = 335.0
+offset_top = -12.0
+offset_right = 420.0
+offset_bottom = 11.0
+text = "Submarino"
+
+[node name="Destructor" type="Label" parent="label"]
+offset_left = 337.0
+offset_top = 45.0
+offset_right = 421.0
+offset_bottom = 68.0
+text = "Destructor"
+
+[node name="Patrullero" type="Label" parent="label"]
+offset_left = 335.0
+offset_top = 115.0
+offset_right = 413.0
+offset_bottom = 138.0
+text = "Patrullero"
+
+[node name="tutorial" type="Label" parent="label"]
+offset_left = -537.0
+offset_top = -174.0
+offset_right = -264.0
+offset_bottom = 64.0
+theme_override_colors/font_outline_color = Color(0.518503, 0.518503, 0.518503, 1)
+theme_override_font_sizes/font_size = 25
+text = "Arrastra los barcos 
+hasta su posición y
+usa click derecho 
+para girarlos"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="error" type="Label" parent="label"]
+visible = false
+offset_left = -169.0
+offset_top = 198.0
+offset_right = 171.0
+offset_bottom = 240.0
+theme_override_colors/font_color = Color(0.8, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="sonidos" type="Node2D" parent="."]
+
+[node name="error sound" type="AudioStreamPlayer2D" parent="sonidos"]
+stream = ExtResource("14_h1who")
+bus = &"SFX"
+
+[node name="succesfull_sound" type="AudioStreamPlayer2D" parent="sonidos"]
+stream = ExtResource("15_joove")
+bus = &"SFX"
+
+[connection signal="pressed" from="botones/ajustes" to="botones/ajustes" method="_on_button_pressed"]
+[connection signal="pressed" from="botones/confirmar" to="Pocicionar_barcos_manager" method="_on_confirmar_pressed"]
+[connection signal="pressed" from="botones/deshacer" to="Pocicionar_barcos_manager" method="_on_deshacer_pressed"]
+[connection signal="timeout" from="Timer" to="Pocicionar_barcos_manager" method="_on_timer_timeout"]

@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://cwh38fvby2g21"]
+
+[ext_resource type="Texture2D" uid="uid://b1r3mwv6ju1n2" path="res://imagenes/barra_blanca.png" id="1_kfwy7"]
+[ext_resource type="Texture2D" uid="uid://c3pmibi8esa56" path="res://imagenes/cuadrado_negro.png" id="2_wqwhx"]
+
+[sub_resource type="Animation" id="Animation_7paqu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-0.593745, 106.594)]
+}
+
+[sub_resource type="Animation" id="Animation_s8dlx"]
+resource_name = "animacion"
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-108, -0.999992), Vector2(110, -1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vptop"]
+_data = {
+"RESET": SubResource("Animation_7paqu"),
+"animacion": SubResource("Animation_s8dlx")
+}
+
+[node name="AnimacionDeCarga" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1.73666e-08, -0.397301)
+rotation = 1.5708
+scale = Vector2(1.01242, 1)
+texture = ExtResource("1_kfwy7")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+self_modulate = Color(0, 0, 0, 1)
+position = Vector2(-0.593745, 106.594)
+rotation = 1.5708
+scale = Vector2(0.201939, 0.195338)
+texture = ExtResource("2_wqwhx")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vptop")
+}
+autoplay = "animacion"

@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://b2dptdjl58ixw"]
+
+[ext_resource type="Texture2D" uid="uid://0cm3v77oq56g" path="res://imagenes/Jugar_localmente.png" id="1_d1qrc"]
+[ext_resource type="Script" path="res://scripts/boton_atras_jugar_local.gd" id="2_qnppu"]
+[ext_resource type="Texture2D" uid="uid://b8uckmmd64v35" path="res://imagenes/Flecha_retorno.png" id="3_nv8uy"]
+[ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="3_olu0s"]
+[ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="5_5dkym"]
+[ext_resource type="Script" path="res://scripts/boton_1_vs_1.gd" id="7_jbsp7"]
+
+[node name="jugar_localmente" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(4.82798e-05, -0.500013)
+scale = Vector2(1.05943, 1.06675)
+texture = ExtResource("1_d1qrc")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.8, 0.8)
+
+[node name="boton_atras_local" type="Button" parent="."]
+offset_left = -659.0
+offset_top = 276.0
+offset_right = -537.0
+offset_bottom = 368.0
+flat = true
+script = ExtResource("2_qnppu")
+
+[node name="Sprite2D" type="Sprite2D" parent="boton_atras_local"]
+position = Vector2(61, 47)
+scale = Vector2(0.026062, 0.0270386)
+texture = ExtResource("3_nv8uy")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="boton_ajustes" type="Button" parent="Control"]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 288.0
+offset_right = 678.0
+offset_bottom = 372.0
+flat = true
+script = ExtResource("3_olu0s")
+
+[node name="Sprite2D" type="Sprite2D" parent="Control/boton_ajustes"]
+position = Vector2(58, 44)
+scale = Vector2(0.0209961, 0.0203857)
+texture = ExtResource("5_5dkym")
+
+[node name="Titulo" type="Label" parent="."]
+offset_left = -258.0
+offset_top = -360.0
+offset_right = 263.0
+offset_bottom = -291.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 50
+text = "Modos de Juego Local"
+
+[node name="boton_Vs_Máquina" type="Button" parent="."]
+offset_left = -210.0
+offset_top = -144.0
+offset_right = 205.0
+offset_bottom = -24.0
+flat = true
+
+[node name="boton_1_Vs_1" type="Button" parent="."]
+offset_left = -214.0
+offset_top = 64.0
+offset_right = 209.0
+offset_bottom = 184.0
+flat = true
+script = ExtResource("7_jbsp7")
+
+[connection signal="pressed" from="boton_atras_local" to="boton_atras_local" method="_on_pressed"]
+[connection signal="pressed" from="Control/boton_ajustes" to="Control/boton_ajustes" method="_on_button_pressed"]
+[connection signal="pressed" from="boton_Vs_Máquina" to="boton_Vs_Máquina" method="_on_pressed"]
+[connection signal="pressed" from="boton_1_Vs_1" to="boton_1_Vs_1" method="_on_pressed"]

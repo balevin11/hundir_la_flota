@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://dcrfsoyqyrydg"]
+
+[ext_resource type="Script" path="res://scripts/pantalla_de_juego.gd" id="1_ef1de"]
+[ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="1_ofand"]
+[ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="2_oe8ok"]
+[ext_resource type="FontFile" uid="uid://duq07fytdjhar" path="res://texto/militar_font.ttf" id="3_t1hip"]
+[ext_resource type="Texture2D" uid="uid://hn158p0fgmmt" path="res://imagenes/metalic_panel.png" id="4_5312j"]
+[ext_resource type="PackedScene" path="res://escenas/tablero_propio.tscn" id="4_po5fx"]
+[ext_resource type="PackedScene" path="res://escenas/tablero_rival.tscn" id="5_siene"]
+
+[node name="pantalla_de_juego" type="Node2D"]
+script = ExtResource("1_ef1de")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 520.0
+offset_top = 524.0
+offset_right = 640.0
+offset_bottom = 644.0
+flat = true
+script = ExtResource("1_ofand")
+
+[node name="Sprite2D" type="Sprite2D" parent="Button"]
+position = Vector2(59.5, 61.5)
+scale = Vector2(0.0270996, 0.0280762)
+texture = ExtResource("2_oe8ok")
+
+[node name="Tú" type="Label" parent="."]
+offset_left = 30.0
+offset_top = 552.0
+offset_right = 494.0
+offset_bottom = 678.0
+theme_override_fonts/font = ExtResource("3_t1hip")
+theme_override_font_sizes/font_size = 60
+text = "Jugador 1"
+horizontal_alignment = 1
+
+[node name="Rival" type="Label" parent="."]
+offset_left = 666.0
+offset_top = 550.0
+offset_right = 1129.0
+offset_bottom = 676.0
+theme_override_fonts/font = ExtResource("3_t1hip")
+theme_override_font_sizes/font_size = 60
+text = "Jugador 2"
+horizontal_alignment = 1
+
+[node name="tablero_propio" parent="." instance=ExtResource("4_po5fx")]
+position = Vector2(280, 304)
+scale = Vector2(1.3, 1.3)
+
+[node name="tablero_rival" parent="." instance=ExtResource("5_siene")]
+position = Vector2(918, 304)
+scale = Vector2(1.3, 1.3)
+
+[node name="Fondo" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(577, 326)
+scale = Vector2(3.5731, 2.16374)
+texture = ExtResource("4_5312j")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
