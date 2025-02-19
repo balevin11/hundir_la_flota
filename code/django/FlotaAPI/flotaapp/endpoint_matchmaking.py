@@ -21,38 +21,44 @@ def matchmaking(request):
         # comprobaciones de SesionesUsuario
         if session_id is None:
             return JsonResponse({"error": "Invalid cookie"}, status=404)
+
         try:
             session = SesionesUsuarios.objects.get(session_id=session_id)
         except SesionesUsuarios.DoesNotExist:
             return JsonResponse({"error": "User not found"}, status=401)
 
-        usuario = session.usuario
+        usuario = session.usuario # Objeto usuario
 
-        juegos_usuario = usuario.partidas_jugadas
+        juegos_usuario = usuario.partidas_jugadas # nº partidas
 
         # comprobar que la dificultad sea válida
         if dificultad not in ["F", "N", "D", None]:
             return JsonResponse({"error": "Invalid difficulty"}, status=400)
 
         # comprobar que no tenga un emparejamiento ni una partida activos
+        # Q() es para poder realizar condiciones "and" y "or", si no son todas and
         try:
-            partida = Partida.objects.get((Q(usuario1=usuario) | Q(usuario2=usuario)) & Q(partida_terminada=False))
+            partida = Partida.objects.get((Q(usuario1=usuario) | Q(usuario2=usuario)) & Q(partida_terminada=False)) # Es decir, que el jugador aún esté en una partida que no haya terminado
         except Partida.DoesNotExist:
+            # No se encontraron partidas sin terminar
             partida_vacio = True
+
         if not partida_vacio:
             return JsonResponse({"error": "You have a pending match", "partida_id": partida.id}, status=409)
+
         try:
-            emparejamiento = Emparejamiento.objects.get(usuario1=usuario, usuario2=None)
+            emparejamiento = Emparejamiento.objects.get(usuario1=usuario, usuario2=None) # Es decir, usuario1 aún está esperando a que alguien más se una
         except Emparejamiento.DoesNotExist:
+            # (Bloque except) El usuario no tiene un emparejamiento activo
             if partida_vacio:
                 # si hay cancel_matchmaking y no hay sala para eliminar
                 if cancel_matchmaking:
                     return JsonResponse({"message": "Matchmaking is clean"})
 
                 # obtener una sala libre dentro de la dificultad
+                # Annotatate y la "F" para obtener un atributo de un objeto
                 sala_disponible = (Emparejamiento.objects
-                                   .annotate(
-                    partidas_jugadas_u1=F('usuario1__partidas_jugadas'))  # Acceder a partidas_jugadas de usuario1
+                                   .annotate(partidas_jugadas_u1=F('usuario1__partidas_jugadas'))  # Acceder a partidas_jugadas de usuario1
                                    .filter(partidas_jugadas_u1__gte=juegos_usuario - 10,
                                            partidas_jugadas_u1__lte=juegos_usuario + 10, dificultad=dificultad,
                                            usuario2=None).first())
@@ -74,6 +80,7 @@ def matchmaking(request):
         if cancel_matchmaking:
             emparejamiento.delete()
             return JsonResponse({"message": "Matchmaking canceled"})
+
         return JsonResponse({"error": "You are already in a matchmaking room"}, status=409)
 
 
@@ -89,12 +96,12 @@ def matchmaking(request):
         except SesionesUsuarios.DoesNotExist:
             return JsonResponse({"error": "User not found"}, status=401)
 
-        usuario = session.usuario
+        usuario = session.usuario # Objeto usuario
 
         # obtener la partida
-        # Q es para poder realizar condiciones and y or si no son todas and
+        # Q() es para poder realizar condiciones "and" y "or", si no son todas and
         try:
-            partida = Partida.objects.get(Q(partida_terminada=False) & (Q(usuario1=usuario) | Q(usuario2=usuario)))
+            partida = Partida.objects.get(Q(partida_terminada=False) & (Q(usuario1=usuario) | Q(usuario2=usuario)))  # Es decir, que el jugador aún esté en una partida que no haya terminado
 
         # si no existe avisar
         except Partida.DoesNotExist:
@@ -113,5 +120,6 @@ def matchmaking(request):
                 partida.turno_actual = partida.usuario2
             partida.save()
         return JsonResponse({"status": "Match found", "partida_id": partida.id})
+
     else:
         return JsonResponse({'error': 'Unsupported HTTP method'}, status=405)

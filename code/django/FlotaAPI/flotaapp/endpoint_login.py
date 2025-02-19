@@ -13,6 +13,7 @@ def login(request):
     try:
         # Obtener los datos enviados en el cuerpo de la solicitud
         data = json.loads(request.body)
+
         nombre = data.get('nombre')  # Obtener con .get para evitar KeyError
         contrasena = data.get('contrasena')
 
@@ -29,13 +30,13 @@ def login(request):
         # Mensaje genérico para mayor seguridad
         return JsonResponse({"error": "Incorrect username or password"}, status=401)
 
-    # Verificar si la contraseña es correcta (asegúrate de usar contraseñas cifradas)
-    if not check_password(contrasena, usuario.contrasena):
+    # Verificar si la contraseña es correcta (asegurarse de usar contraseñas cifradas)
+    if not check_password(contrasena, usuario.contrasena): # Función de paquete Django para hash
         # Mensaje genérico para mayor seguridad
         return JsonResponse({"error": "Incorrect username or password"}, status=401)
 
     # Generar un SESSION_ID único
-    session_id = str(uuid.uuid4())
+    session_id = str(uuid.uuid4()) # Genera un número aleatorio
 
     # Almacenar el session_id en la base de datos
     SesionesUsuarios.objects.create(usuario=usuario, session_id=session_id)

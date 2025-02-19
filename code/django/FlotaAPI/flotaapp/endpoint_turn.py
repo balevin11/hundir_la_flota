@@ -18,12 +18,13 @@ def turno(request, partida_id):
             # comprobaciones de SesionesUsuario
             if session_id is None:
                 return JsonResponse({"error": "Invalid cookie"}, status=404)
+
             try:
                 session = SesionesUsuarios.objects.get(session_id=session_id)
             except SesionesUsuarios.DoesNotExist:
                 return JsonResponse({"error": "User not found"}, status=401)
 
-            usuario_atacante = session.usuario
+            usuario_atacante = session.usuario # Objeto usuario
 
             # Determinar el usuario defensor (contrincante) basado en el atacante actual
             if usuario_atacante == partida.usuario1:
@@ -91,6 +92,7 @@ def turno(request, partida_id):
                     # Separar coordenadas para recuento de "vida" del barco
                     coordenadas_x = []
                     coordenadas_y = []
+
                     for pos in posiciones_barco:
                         coordenadas_x.append(pos[0]) # Guardar todas las coordenadas x en la misma variable
                         coordenadas_y.append(pos[1]) # Guardar todas las coordenadas y en la misma variable
@@ -128,8 +130,8 @@ def turno(request, partida_id):
                 0: "Patrullero",
                 1: "Destructor",
                 2: "Submarino",
-                4: "Acorazado",
-                3: "Portaaviones",
+                3: "Acorazado",
+                4: "Portaaviones",
                 5: "Agua"
             }
             resultado_string = nombres_barcos[resultado_impacto]
@@ -143,13 +145,18 @@ def turno(request, partida_id):
                 if not barcos_restantes.exists():
                     partida_terminada = True
                     ganador = usuario_atacante.nombre
+
                     # Terminar partida
                     partida.partida_terminada = True
                     partida.ganador = usuario_atacante
                     partida.save()
+
                     # Actualizar estadísticas
                     usuario_atacante.partidas_ganadas += 1
+                    usuario_atacante.partidas_jugadas += 1
                     usuario_atacante.save()
+                    usuario_defensor.partidas_jugadas += 1
+                    usuario_defensor.save()
 
             # Si no hubo impacto, cambiar el turno
             if not impacto:
@@ -176,18 +183,20 @@ def turno(request, partida_id):
         # comprobaciones de SesionesUsuario
         if session_id is None:
             return JsonResponse({"error": "Invalid cookie"}, status=404)
+
         try:
             session = SesionesUsuarios.objects.get(session_id=session_id)
         except SesionesUsuarios.DoesNotExist:
             return JsonResponse({"error": "User not found"}, status=401)
 
-        usuario = session.usuario
+        usuario = session.usuario # Objeto del usuario
 
         # Verificar que el usuario esté en la partida
         try:
             partida = Partida.objects.get(id=partida_id)
         except Partida.DoesNotExist:
             return JsonResponse({"error": "Match not found"}, status=404)
+
         if usuario not in [partida.usuario1, partida.usuario2]:
             return JsonResponse({"error": "User does not belong to this item"}, status=403)
 
@@ -205,9 +214,9 @@ def turno(request, partida_id):
         )
 
         # Otros datos de la partida
-        turno_actual = partida.turno_actual.nombre if partida.turno_actual else None
+        turno_actual = partida.turno_actual.nombre if partida.turno_actual else None # Si no hay turno actual en Partida, es None
         partida_finalizada = partida.partida_terminada
-        ganador = partida.ganador.nombre if partida.ganador else None
+        ganador = partida.ganador.nombre if partida.ganador else None # Si no hay ganador en Partida, es None
 
         # Respuesta JSON con los datos solicitados
         return JsonResponse({

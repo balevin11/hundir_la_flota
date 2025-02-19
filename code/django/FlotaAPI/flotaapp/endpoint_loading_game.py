@@ -29,11 +29,13 @@ def cargar_partida(request, partida_id):
         # inicializar atributos
         i = 0
         registro_posicion = []
+
         # obtener partida
         try:
             partida = Partida.objects.get(id=partida_id)
         except Partida.DoesNotExist:
             return JsonResponse({"error": "Match not found"}, status=404)
+
         dificultad = partida.dificultad
 
         # comprobar que no se hayan creado ya las rocas para esta partida
@@ -52,10 +54,13 @@ def cargar_partida(request, partida_id):
             while i < num_rocas:
                 # genramos la posicion aleatoria
                 posicion = [randint(1, 10), randint(1, 10)]
+
                 # comprobar que no esté ya ocupada la posición
                 if posicion not in registro_posicion:
                     # crear roca y guardarla en una lista
                     roca = Roca(partida=partida, X=posicion[0], Y=posicion[1])
+
+                    # JSON para la respuesta
                     registro_rocas.append({'X': roca.X, 'Y': roca.Y})
                     registro_posicion.append(posicion)
                     roca.save()
@@ -75,12 +80,13 @@ def cargar_partida(request, partida_id):
         # comprobaciones de SesionesUsuario
         if session_id is None:
             return JsonResponse({"error": "Invalid cookie"}, status=404)
+
         try:
             session = SesionesUsuarios.objects.get(session_id=session_id)
         except SesionesUsuarios.DoesNotExist:
             return JsonResponse({"error": "User not found"}, status=401)
 
-        usuario = session.usuario
+        usuario = session.usuario # Objeto usuario
 
         # Controlar que un tercer jugador no autorizado entre en la partida
         if partida.usuario1 != usuario and partida.usuario2 != usuario:
@@ -96,6 +102,7 @@ def cargar_partida(request, partida_id):
             return JsonResponse({"error": "No ships provided"}, status=400)
 
         errores = [] # Lista para mostrar uno o varios errores en la respuesta
+        # set() es como una lista que no permite elementos duplicados, y no mantiene un orden específico
         tablero_ocupado = set() # Para verificar colisiones con otros barcos
         tablero_ocupado_rocas = set() # Para verificar colisiones con las rocas
 
@@ -125,7 +132,7 @@ def cargar_partida(request, partida_id):
 
             # Validación de las demás coordenadas que se propagan debido a la longitud del barco
             longitud = LONGITUD_BARCOS[barco]
-            coordenadas_barco = []
+            coordenadas_barco = [] # Lista de tuplas
 
             if direccion == "horizontal":
                 if coordenada_x + longitud - 1 > 10:

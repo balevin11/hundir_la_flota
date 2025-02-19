@@ -6,7 +6,7 @@ def ranking (request):
     #control que sea un GET
     if request.method == "GET":
         #inicializar variables
-        json_usuarios = []
+        json_usuarios = [] # Lista de JSON
         #crear lista del top 5 por porcentaje de victorias
         #gte es mayor o igual a x
         #annotate permite crear un nuevo atributo en la tabla de forma local

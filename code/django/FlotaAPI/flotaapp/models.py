@@ -46,7 +46,6 @@ class BarcosPartida(models.Model):
     Y = models.IntegerField()
     direccion = models.CharField(max_length=1, choices=DIRECCIONES, default= "V")
     tipo_barco = models.IntegerField(choices=Barcos.choices)
-    # En principio no debería de estar --> puntos_dano = models.IntegerField()
     hundido = models.BooleanField(default=False)
 
     def longitud(self):
@@ -57,9 +56,9 @@ class BarcosPartida(models.Model):
         elif self.tipo_barco == 2:
             return 4
         elif self.tipo_barco == 3:
-            return 5
-        else:
             return 6
+        else:
+            return 5
 
 
 class Roca(models.Model):
