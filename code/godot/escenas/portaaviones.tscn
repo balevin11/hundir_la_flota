@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://c27pg5i2fea1g"]
+[gd_scene load_steps=6 format=3 uid="uid://eghw2gijlfbn"]
 
 [ext_resource type="Script" path="res://scripts/portaaviones.gd" id="1_acida"]
 [ext_resource type="Texture2D" uid="uid://da27qk6n01xbp" path="res://imagenes/portaaviones.png" id="2_5dmof"]

@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://b8oumnn1oa5hf" path="res://imagenes/Cambio_de_jugador.png" id="1_wx6v3"]
 [ext_resource type="Script" path="res://scripts/boton_cambio_turno.gd" id="2_l3a1j"]
 [ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="3_a8cel"]
-[ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="3_mapqe"]
+[ext_resource type="Texture2D" uid="uid://dxvo40i5agw87" path="res://imagenes/Engranaje.png" id="3_mapqe"]
 
 [node name="pantalla_cambio_jugador" type="Node2D"]
 

@@ -45,7 +45,7 @@ func _on_options_button_dificultad_item_selected(index: int) -> void:
 	Persistencia.save_data()
 	
 	# Definir el mapeo de índices a letras
-	var dificultad_map = ["F", "M", "D"]  # "F" = Fácil, "M" = Media, "D" = Difícil
+	var dificultad_map = ["F", "N", "D"]  # "F" = Fácil, "N" = Media, "D" = Difícil
 
 	# Actualizar la dificultad en la variable global con la letra correspondiente
 	Global.dificultad = dificultad_map[index]

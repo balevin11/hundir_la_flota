@@ -59,7 +59,21 @@ func _on_get_request_completed(result, response_code, headers, body):
 
 
 func _on_boton_volver_pressed() -> void:
-	ManagerEscenas.volver()
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.connect("request_completed", _on_server_has_responded)
+	#cuerpo del POST
+	var body = JSON.stringify({"cancel_matchmaking":true})
+	#cabeceras del POST
+	var headers = ["Content-Type: application/json", "Cookie: SESSION_ID=" +str(Global.cookie)]
+	http_request.request("http://127.0.0.1:8000/api/1/matchmaking", headers,HTTPClient.METHOD_POST, body)
+	
+	
 
-
+func _on_server_has_responded(result, response_code, headers, body):
+	var response =  JSON.parse_string(body.get_string_from_utf8())
+	print(response)
+	if response_code == 200:
+		print("partida eliminada exitosamente")
+		ManagerEscenas.volver()
 #ManagerEscenas en teoría está inicializado en otra parte. Debería de funcionar.

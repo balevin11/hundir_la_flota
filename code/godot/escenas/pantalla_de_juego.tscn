@@ -1,13 +1,34 @@
-[gd_scene load_steps=9 format=3 uid="uid://dcrfsoyqyrydg"]
+[gd_scene load_steps=12 format=3 uid="uid://dcrfsoyqyrydg"]
 
 [ext_resource type="Script" path="res://scripts/pantalla_de_juego.gd" id="1_ef1de"]
 [ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="1_ofand"]
 [ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="2_oe8ok"]
 [ext_resource type="FontFile" uid="uid://duq07fytdjhar" path="res://texto/militar_font.ttf" id="3_t1hip"]
 [ext_resource type="Texture2D" uid="uid://hn158p0fgmmt" path="res://imagenes/metalic_panel.png" id="4_5312j"]
-[ext_resource type="PackedScene" uid="uid://dtcu5d2urwm8" path="res://escenas/tablero_propio.tscn" id="4_po5fx"]
-[ext_resource type="PackedScene" path="res://escenas/tablero_rival.tscn" id="5_siene"]
-[ext_resource type="PackedScene" uid="uid://c27pg5i2fea1g" path="res://escenas/portaaviones.tscn" id="8_y5qor"]
+[ext_resource type="PackedScene" uid="uid://d4jx6hhxackqp" path="res://escenas/tablero_propio.tscn" id="4_po5fx"]
+[ext_resource type="PackedScene" uid="uid://cmuoqqd5mc1kk" path="res://escenas/tablero_rival.tscn" id="5_siene"]
+[ext_resource type="Texture2D" uid="uid://bbppkrn4eqjix" path="res://imagenes/luz_apagada.webp" id="8_7d1jj"]
+[ext_resource type="AudioStream" uid="uid://cpe32t2a64wkd" path="res://sonidos/light-switch-156813.mp3" id="8_qyl1k"]
+[ext_resource type="Texture2D" uid="uid://0w31s4ogol5b" path="res://imagenes/luz_roja.webp" id="9_jw8ni"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kyfvu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_7d1jj")
+}],
+"loop": true,
+"name": &"apagado",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_jw8ni")
+}],
+"loop": true,
+"name": &"encendido",
+"speed": 5.0
+}]
 
 [node name="pantalla_de_juego" type="Node2D"]
 script = ExtResource("1_ef1de")
@@ -64,7 +85,17 @@ texture = ExtResource("4_5312j")
 wait_time = 0.461
 autostart = true
 
-[node name="portaaviones" parent="." instance=ExtResource("8_y5qor")]
-position = Vector2(172, 157)
+[node name="luz_cambio" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(576, 117)
+scale = Vector2(0.75, 0.75)
+stream = ExtResource("8_qyl1k")
+bus = &"SFX"
 
+[node name="luz_turno" type="AnimatedSprite2D" parent="."]
+position = Vector2(576, 117)
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_kyfvu")
+animation = &"apagado"
+
+[connection signal="pressed" from="Button" to="Button" method="_on_button_pressed"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

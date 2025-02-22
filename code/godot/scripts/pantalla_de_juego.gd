@@ -10,6 +10,8 @@ var ultimo_ataque = null
 @onready var mi_tablero: Node2D = $tablero_propio
 @onready var tablero_rival: Node2D = $tablero_rival
 @onready var timer: Timer = $Timer
+@onready var luz_turno = $luz_turno
+@onready var luz_turno_sound = $luz_cambio
 const ANIMACION_EXPLOSION = preload("res://escenas/animacion_explosion.tscn")
 const ANIMACION_AGUA = preload("res://escenas/agua_animacion.tscn")
 const ANIMACION_HUMO = preload("res://escenas/animacion_humo.tscn")
@@ -19,6 +21,18 @@ const SUBMARINO = preload("res://escenas/submarino.tscn")
 const ACORAZADO = preload("res://escenas/acorazado.tscn")
 const PORTAAVIONES = preload("res://escenas/portaaviones.tscn")
 
+func _process(delta: float) -> void:
+	var encendido = false
+	if turno_actual == jugador_nombre:
+		luz_turno.play("encendido")
+		if !encendido:
+			luz_turno_sound.play()
+		encendido = true
+	else:
+		luz_turno.play("apagado")
+		if encendido:
+			luz_turno_sound.play()
+		encendido = false
 func _ready():
 	crear_tablero_rival()
 	if Global.tu_empiezas:
@@ -56,21 +70,21 @@ func _ready():
 	const ACORAZADO = preload("res://escenas/acorazado.tscn")
 	var child_acorazado = ACORAZADO.instantiate()
 	add_child(child_acorazado)
-	var casilla_acorazado = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[3]-1) + str(Global.x_barcos[3]-1)))
+	var casilla_acorazado = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[4]-1) + str(Global.x_barcos[4]-1)))
 	child_acorazado.global_position = casilla_acorazado.global_position
 	child_acorazado.set_script(null)
 	child_acorazado.apply_scale(Vector2(1.35, 1.35))
-	if Global.dir_barcos[3] == "vertical":
+	if Global.dir_barcos[4] == "vertical":
 		child_acorazado.rotation_degrees = 90
 		
 	const PORTAAVIONES = preload("res://escenas/portaaviones.tscn")
 	var child_portaaviones = PORTAAVIONES.instantiate()
 	add_child(child_portaaviones)
-	var casilla_portaaviones = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[4]-1) + str(Global.x_barcos[4]-1)))
+	var casilla_portaaviones = mi_tablero.get_node("casillas").get_child(int(str(Global.y_barcos[3]-1) + str(Global.x_barcos[3]-1)))
 	child_portaaviones.global_position = casilla_portaaviones.global_position
 	child_portaaviones.set_script(null)
 	child_portaaviones.apply_scale(Vector2(1.35, 1.35))
-	if Global.dir_barcos[4] == "vertical":
+	if Global.dir_barcos[3] == "vertical":
 		child_portaaviones.rotation_degrees = 90
 	
 func crear_tablero_rival():
@@ -203,12 +217,22 @@ func actualizar_mi_tablero(resultado, resultado_ataque, partida_finalizada, gana
 					casilla.modulate = Color(1, 0, 0)  # Rojo para impacto
 					
 		if partida_finalizada:
+			if ganador == null:
+				ganador = "Tu rival"
 			mostrar_ganador(ganador)
 
 	if partida_finalizada:
+		if ganador == null:
+			ganador = "Tu rival"
 		mostrar_ganador(ganador)
 
 func mostrar_ganador(ganador):
+	if ganador == null:
+		ganador = "Tu rival"
 	print("¡Partida finalizada! Ganador:", ganador)
-	Global.winner=ganador
-	get_tree().change_scene_to_file("res://escenas/pantalla_finalizado.tscn")
+	Global.winner = ganador
+
+	if get_tree() and get_tree().current_scene:
+		get_tree().change_scene_to_file("res://escenas/pantalla_finalizada.tscn")
+	else:
+		print("Error: No se puede cambiar de escena porque get_tree() es null o no hay una escena activa")

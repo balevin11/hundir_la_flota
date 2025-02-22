@@ -211,8 +211,9 @@ func hacer_post():
 	var body = JSON.stringify({"patrullero":{"x":Global.x_barcos[0],"y":Global.y_barcos[0], "direccion":Global.dir_barcos[0]}, 
 								"destructor":{"x":Global.x_barcos[1],"y":Global.y_barcos[1], "direccion":Global.dir_barcos[1]}, 
 								"submarino":{"x":Global.x_barcos[2],"y":Global.y_barcos[2], "direccion":Global.dir_barcos[2]}, 
-								"portaaviones":{"x":Global.x_barcos[3],"y":Global.y_barcos[3], "direccion":Global.dir_barcos[3]}, 
-								"acorazado":{"x":Global.x_barcos[4],"y":Global.y_barcos[4], "direccion":Global.dir_barcos[4]}})
+								"acorazado":{"x":Global.x_barcos[4],"y":Global.y_barcos[4], "direccion":Global.dir_barcos[4]},
+								"portaaviones":{"x":Global.x_barcos[3],"y":Global.y_barcos[3], "direccion":Global.dir_barcos[3]}})
+
 	#cabeceras del POST
 	var headers = ["Content-Type: application/json", "Cookie: SESSION_ID=" +str(Global.cookie)]
 	http_request.request("http://127.0.0.1:8000/api/1/partida/" +str(Global.partida_id), headers,HTTPClient.METHOD_POST, body)

@@ -1,18 +1,18 @@
-[gd_scene load_steps=16 format=3 uid="uid://clj5btq3kw7t6"]
+[gd_scene load_steps=16 format=3 uid="uid://djxr1mfci0ork"]
 
 [ext_resource type="Texture2D" uid="uid://gkqgcn4smclo" path="res://imagenes/imagen_menu_generica.jpg" id="2_kr7wx"]
 [ext_resource type="Script" path="res://scripts/pocicionar_barcos_manager.gd" id="2_p07tl"]
 [ext_resource type="PackedScene" uid="uid://ctkgtdnyfoonh" path="res://escenas/tablero_posicionar_barcos.tscn" id="2_uw4jt"]
-[ext_resource type="PackedScene" uid="uid://baegsf7fjcrna" path="res://escenas/patrullero.tscn" id="3_7r48k"]
+[ext_resource type="PackedScene" uid="uid://c7sqdqegtmrvo" path="res://escenas/patrullero.tscn" id="3_7r48k"]
 [ext_resource type="Texture2D" uid="uid://clw1aev0om3am" path="res://imagenes/fondo_boton_iniciar.png" id="4_hj7wp"]
 [ext_resource type="Texture2D" uid="uid://b5eypqj1nyjgy" path="res://imagenes/Engranaje.png" id="4_pbysq"]
-[ext_resource type="PackedScene" uid="uid://y8vgp75xh3eu" path="res://escenas/submarino.tscn" id="4_u4i6w"]
-[ext_resource type="PackedScene" uid="uid://bg73rmm8mp40p" path="res://escenas/acorazado.tscn" id="5_2c8tf"]
-[ext_resource type="Texture2D" uid="uid://di14ptvunm0fn" path="res://imagenes/raton_blanco-removebg-preview.png" id="5_mp6jn"]
+[ext_resource type="PackedScene" uid="uid://csqrkb4s668af" path="res://escenas/submarino.tscn" id="4_u4i6w"]
+[ext_resource type="PackedScene" uid="uid://clj8x01rho3rd" path="res://escenas/acorazado.tscn" id="5_2c8tf"]
+[ext_resource type="Texture2D" uid="uid://byaf88ve77s0u" path="res://imagenes/raton_negro-removebg-preview.png" id="5_tg3tc"]
 [ext_resource type="Script" path="res://scripts/boton_ajustes.gd" id="5_vmpgt"]
-[ext_resource type="PackedScene" uid="uid://btjbm6jbundtb" path="res://escenas/destructor.tscn" id="6_kdcx4"]
+[ext_resource type="PackedScene" uid="uid://cq5e3muxdkeuw" path="res://escenas/destructor.tscn" id="6_kdcx4"]
 [ext_resource type="Texture2D" uid="uid://b8uckmmd64v35" path="res://imagenes/Flecha_retorno.png" id="6_qvafk"]
-[ext_resource type="PackedScene" uid="uid://eghw2gijlfbn" path="res://escenas/portaaviones.tscn" id="7_58vpj"]
+[ext_resource type="PackedScene" uid="uid://c6igk8llb66b6" path="res://escenas/portaaviones.tscn" id="7_58vpj"]
 [ext_resource type="AudioStream" uid="uid://dugof6iu2mdhv" path="res://sonidos/error-call-to-attention-129258.mp3" id="14_h1who"]
 [ext_resource type="AudioStream" uid="uid://bxj0xd7tyvtls" path="res://sonidos/purchase-succesful-ingame-230550.mp3" id="15_joove"]
 
@@ -39,10 +39,10 @@ position = Vector2(-415, 238)
 scale = Vector2(0.204712, 0.247126)
 texture = ExtResource("4_hj7wp")
 
-[node name="raton_image" type="Sprite2D" parent="."]
+[node name="RatonNegro-removebg-preview" type="Sprite2D" parent="."]
 position = Vector2(-405, 56)
 scale = Vector2(0.546774, 0.542308)
-texture = ExtResource("5_mp6jn")
+texture = ExtResource("5_tg3tc")
 
 [node name="botones" type="Node2D" parent="."]
 
@@ -143,6 +143,7 @@ offset_left = -537.0
 offset_top = -174.0
 offset_right = -264.0
 offset_bottom = 64.0
+theme_override_colors/font_color = Color(0.000245483, 0.000245483, 0.000245483, 1)
 theme_override_colors/font_outline_color = Color(0.518503, 0.518503, 0.518503, 1)
 theme_override_font_sizes/font_size = 25
 text = "Arrastra los barcos 
@@ -167,11 +168,9 @@ theme_override_font_sizes/font_size = 30
 
 [node name="error sound" type="AudioStreamPlayer2D" parent="sonidos"]
 stream = ExtResource("14_h1who")
-bus = &"SFX"
 
 [node name="succesfull_sound" type="AudioStreamPlayer2D" parent="sonidos"]
 stream = ExtResource("15_joove")
-bus = &"SFX"
 
 [connection signal="pressed" from="botones/ajustes" to="botones/ajustes" method="_on_button_pressed"]
 [connection signal="pressed" from="botones/confirmar" to="Pocicionar_barcos_manager" method="_on_confirmar_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://qfh5gmtju5ao"]
+[gd_scene load_steps=6 format=3 uid="uid://y8vgp75xh3eu"]
 
 [ext_resource type="Script" path="res://scripts/submarino.gd" id="1_jmyti"]
 [ext_resource type="Texture2D" uid="uid://domf04fsrl0k7" path="res://imagenes/submarino.png" id="2_a6j0f"]

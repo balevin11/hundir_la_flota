@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://p6y4h5jspouk"]
+[gd_scene load_steps=6 format=3 uid="uid://baegsf7fjcrna"]
 
 [ext_resource type="Script" path="res://scripts/patrullero.gd" id="1_ybxb4"]
 [ext_resource type="Texture2D" uid="uid://b6vnfrjqakh1g" path="res://imagenes/patrullero.png" id="2_tk1nh"]
